@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Register Student</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Register Student</h1>
+
+    <form method="POST">
+
+        <p>Student ID</p>
+
+        <input
+            type="text"
+            name="student_id"
+            placeholder="Enter Student ID"
+            required
+        >
+
+        <br><br>
+
+        <p>Student Name</p>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Enter Student Name"
+            required
+        >
+
+        <br><br>
+
+        <p>Department</p>
+
+        <input
+            type="text"
+            name="department"
+            placeholder="Example: CSE"
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Register Student
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/">
+        Back to Home
+    </a>
+
+</div>
+
+</body>
+
+</html>
