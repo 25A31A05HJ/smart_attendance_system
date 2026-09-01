@@ -2,3 +2,6 @@ Flask
 gunicorn
 opencv-contrib-python
 numpy
+streamlit
+opencv-python-headless
+numpy
