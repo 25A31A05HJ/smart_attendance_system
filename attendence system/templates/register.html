@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register Student</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #263238;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #37474f;
+        }
+
+        .message {
+            margin: 20px 0 5px;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .message.success {
+            background: #e6f4ea;
+            color: #1e7e34;
+            border: 1px solid #1e7e34;
+        }
+
+        .message.error {
+            background: #fdecea;
+            color: #c0392b;
+            border: 1px solid #c0392b;
+        }
+
+        select {
+            width: 96%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Register Student</h1>
+
+    <form method="POST"
+          action="/register"
+          enctype="multipart/form-data">
+
+        <label for="student_id">
+            Student ID
+        </label>
+
+        <input
+            type="text"
+            id="student_id"
+            name="student_id"
+            placeholder="Enter Student ID"
+            required
+        >
+
+
+        <label for="name">
+            Student Name
+        </label>
+
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter Student Name"
+            required
+        >
+
+
+        <label for="department">
+            Department
+        </label>
+
+        <input
+            type="text"
+            id="department"
+            name="department"
+            placeholder="Example: CSE"
+            required
+        >
+
+
+        <label for="student_type">
+            Student Type
+        </label>
+
+        <select
+            id="student_type"
+            name="student_type"
+            required
+        >
+            <option value="" disabled selected>
+                Select type
+            </option>
+            <option value="Undergraduate">Undergraduate</option>
+            <option value="Postgraduate">Postgraduate</option>
+            <option value="Faculty/Staff">Faculty/Staff</option>
+        </select>
+
+
+        <label for="face_image">
+            Face Image
+        </label>
+
+        <input
+            type="file"
+            id="face_image"
+            name="face_image"
+            accept="image/*"
+            required
+        >
+
+
+        <button type="submit">
+            Register Student
+        </button>
+
+    </form>
+
+    {% if message %}
+        <div class="message {{ 'success' if success else 'error' }}">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <a href="/">
+        Back to Home
+    </a>
+
+</div>
+
+</body>
+</html>
