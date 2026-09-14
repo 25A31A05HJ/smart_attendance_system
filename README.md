@@ -17,8 +17,7 @@ process.
 
 ### 🔥 Try the Project Live
 
-👉 **[🚀 OPEN SMART ATTENDANCE SYSTEM] https://smart-attendance-system-14-g2ra.onrender.com/**
-
+👉**https://smart-attendance-system-14-g2ra.onrender.com/**
 > ⚠️ Allow camera permission when using the scanner.
 
 ------------------------------------------------------------------------
