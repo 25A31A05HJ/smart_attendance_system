@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Smart Attendance - Face Scanner</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        video {
+            width: 640px;
+            max-width: 90%;
+            border-radius: 10px;
+            border: 3px solid #333;
+            background: black;
+        }
+
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+            border: none;
+        }
+
+        #startButton {
+            background: #28a745;
+            color: white;
+        }
+
+        #scanButton {
+            background: #007bff;
+            color: white;
+        }
+
+        #homeButton {
+            background: #555;
+            color: white;
+        }
+
+        #message {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        canvas {
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>📷 Smart Attendance Scanner</h1>
+
+    <p>Look directly at the camera.</p>
+
+    <video id="video" autoplay playsinline></video>
+
+    <canvas id="canvas"></canvas>
+
+    <br>
+
+    <button id="startButton">
+        Start Camera
+    </button>
+
+    <button id="scanButton">
+        Scan Face
+    </button>
+
+    <button id="homeButton"
+            onclick="window.location.href='/'">
+        Return Home
+    </button>
+
+    <div id="message">
+        Camera not started.
+    </div>
+
+
+<script>
+
+const video = document.getElementById("video");
+
+const canvas = document.getElementById("canvas");
+
+const message = document.getElementById("message");
+
+const startButton =
+    document.getElementById("startButton");
+
+const scanButton =
+    document.getElementById("scanButton");
+
+
+let stream = null;
+
+
+// ========================================
+// START CAMERA
+// ========================================
+
+startButton.addEventListener(
+    "click",
+    async function() {
+
+        try {
+
+            stream =
+                await navigator.mediaDevices.getUserMedia({
+                    video: true
+                });
+
+            video.srcObject = stream;
+
+            message.innerText =
+                "✅ Camera started. Look at the camera.";
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            message.innerText =
+                "❌ Camera permission denied.";
+
+        }
+
+    }
+);
+
+
+// ========================================
+// SCAN FACE
+// ========================================
+
+scanButton.addEventListener(
+    "click",
+    async function() {
+
+        if (!stream) {
+
+            message.innerText =
+                "❌ Please start the camera first.";
+
+            return;
+
+        }
+
+
+        message.innerText =
+            "🔍 Scanning face...";
+
+
+        // Set canvas size
+        canvas.width = video.videoWidth;
+
+        canvas.height = video.videoHeight;
+
+
+        // Capture current camera frame
+        const context =
+            canvas.getContext("2d");
+
+        context.drawImage(
+            video,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        // Convert image to Base64
+        const image =
+            canvas.toDataURL("image/jpeg");
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/recognize",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            image: image
+                        })
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            message.innerText =
+                result.message;
+
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            message.innerText =
+                "❌ Error connecting to server.";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
