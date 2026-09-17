@@ -17,7 +17,7 @@ process.
 
 ### 🔥 Try the Project Live
 
-👉**https://smart-attendance-system-14-g2ra.onrender.com/**
+👉**https://smart-attendance-system-inky.vercel.app/**
 > ⚠️ Allow camera permission when using the scanner.
 
 ------------------------------------------------------------------------
