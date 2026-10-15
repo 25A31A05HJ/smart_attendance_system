@@ -135,10 +135,12 @@ This project can be extended with:
 
 ------------------------------------------------------------------------
 
-## 👨‍💻 Project Status
 
-**🟢 Developer**
+
+**🟢 Developer **
 VEERA PURNIMA VENKATA 
+
+
 Computer Science and Engineering **.
 
 ------------------------------------------------------------------------
