@@ -137,10 +137,9 @@ This project can be extended with:
 
 ## 👨‍💻 Project Status
 
-**🟢 LIVE & DEPLOYED**
-
-Built as a final-year/project demonstration to explore the practical use
-of **Artificial Intelligence, Computer Vision and Web Development**.
+**🟢 Developer**
+VEERA PURNIMA VENKATA 
+Computer Science and Engineering **.
 
 ------------------------------------------------------------------------
 
